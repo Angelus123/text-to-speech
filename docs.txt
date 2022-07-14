@@ -1,0 +1,79 @@
+//Text to speech api
+
+    It is post request and can call with
+        http://localhost:8082/text-to-speech
+    Body of request contains json formated text
+
+    Input Sample
+        {
+            "text":"Helly"
+        }
+    Output Sample
+        {
+            "audioContent":{
+                "type":"Buffer",
+                "data":[
+                    255,
+                    289,
+                    ....
+                ]
+            }
+        }
+
+
+//Speech to Text
+    
+    It is post request and can call with
+        http://localhost:8082/speech-to-text
+
+    //Convert mp3 file to dataFormat by this code
+        const filename = "./audio.mp3";
+        const file = fs.readFileSync(filename);
+        var audioBytes = file.toString('base64');
+    
+    Then send audioBytes in body of request
+
+    Input Sample
+        {
+            "audio":audioBytes
+        }    
+
+    Output Sample
+        {
+            "results": [
+                {
+                    "alternatives": [
+                        {
+                            "words": [],
+                            "transcript": "play 10 times. Just helping families to get through it but changing improving",
+                            "confidence": 0.849367082118988
+                        }
+                    ],
+                    "channelTag": 0,
+                    "resultEndTime": {
+                        "seconds": "31",
+                        "nanos": 230000000
+                    },
+                    "languageCode": "en-us"
+                },
+                {
+                    "alternatives": [
+                        {
+                            "words": [],
+                            "transcript": "being prime minister is an education in itself upon so many people possessed of such boundless even if things can sometimes see a future together is golden",
+                            "confidence": 0.9240240454673767
+                        }
+                    ],
+                    "channelTag": 0,
+                    "resultEndTime": {
+                        "seconds": "65",
+                        "nanos": 220000000
+                    },
+                    "languageCode": "en-us"
+                }
+            ],
+            "totalBilledTime": {
+                "seconds": "240",
+                "nanos": 0
+            }
+        }
